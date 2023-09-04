@@ -1,11 +1,35 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { NextPageContext } from 'next'
+import { getSession, signOut } from 'next-auth/react'
+import useCurrentUser from '@/hooks/useCurrentUser'
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const { data: user } = useCurrentUser()
+
   return (
     <>
+    <button className="h-10 w-full bg-white" onClick={() => signOut()}>Logout</button>
+    <p className="text-white">Logged in as: {user?.name}</p>
       <h1 className="text-red-700 text-4xl p-4">FilmFlix</h1>
       <h2 className="text-red-700 text-2xl p-4">A Netflix Clone</h2>
       <h3 className="text-red-700 text-xl p-4">Built with React, Typescript, TailwindCSS, Next.js, MongoDB, NextAuth and Vercel</h3>
