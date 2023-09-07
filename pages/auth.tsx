@@ -14,9 +14,11 @@ const Auth = () => {
     const [password, setPassword] = useState('')
 
     const [variant, setVariant] = useState('login')
+    const [error, setError] = useState('')
 
     const toggleVariant = useCallback(() => {
         setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
+        setError('') // Clear error message
     }, [])
 
     const login = useCallback(async () => {
@@ -27,6 +29,7 @@ const Auth = () => {
                 callbackUrl: '/profiles'
             })
         } catch (error) {
+            setError('Login failed. Please check your credentials.') // Show error message
             console.log(error)
         }
     }, [email, password])
@@ -41,6 +44,7 @@ const Auth = () => {
 
             login()
         } catch (error) {
+            setError('Registration failed. Please try again.') // Show error message
             console.log(error)
         }
     }, [email, name, password, login]);
