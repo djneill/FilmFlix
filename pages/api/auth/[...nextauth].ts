@@ -50,6 +50,20 @@ export const authOptions: AuthOptions = {
                     throw new Error('Incorrect password');
                 }
 
+                // Check if the user has logged in previously with a different provider
+                const existingProviderUser = await prismadb.user.findFirst({
+                    where: {
+                        email: credentials.email,
+                        NOT: {
+                            id: user.id, // Exclude the current user
+                        },
+                    },
+                });
+
+                if (existingProviderUser) {
+                    throw new Error('This email has already logged in using a different provider');
+                }
+
                 return user;
             }
         })
