@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useCallback, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Input from '@/components/Input'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
@@ -29,7 +31,7 @@ const Auth = () => {
                 callbackUrl: '/profiles'
             })
         } catch (error) {
-            setError('Login failed. Please check your credentials.') // Show error message
+            toast.error('Login failed. Please check your credentials.') // Show error message
             console.log(error)
         }
     }, [email, password])
@@ -44,7 +46,7 @@ const Auth = () => {
 
             login()
         } catch (error) {
-            setError('Registration failed. Please try again.') // Show error message
+            toast.error('Registration failed. Please try again.') // Show error message
             console.log(error)
         }
     }, [email, name, password, login]);
@@ -57,9 +59,6 @@ const Auth = () => {
                 </nav>
                 <div className="flex justify-center">
                     <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-                        {error && (
-                            <p className="text-red-600 font-semibold mb-3">{error}</p>
-                        )}
                         <p className="text-red-600 font-semibold mb-3">
                             Do not use your real Netflix Password
                         </p>
