@@ -28,7 +28,7 @@ const Auth = () => {
         if (errorParam) {
             // Handle the error based on the error message
             if (errorParam === 'OAuthAccountNotLinked') {
-                toast.error('This email has already logged in using a different provider.');
+                toast.error('This email has already logged in using a different provider method.');
             } else {
                 toast.error('An error occurred during authentication.');
             }
@@ -69,7 +69,7 @@ const Auth = () => {
     }, [email, name, password, login]);
 
     return (
-        <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+        <div className="relative h-full w-full bg-[url('/images/netflixbg.jpeg')] bg-no-repeat bg-center bg-fixed bg-cover">
             <div className="bg-black w-full h-full lg:bg-opacity-50">
                 <nav className="px-12 py-5">
                     <img src="/images/filmlogo.png" alt="logo" className="h-12" />
