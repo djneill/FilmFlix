@@ -1,10 +1,11 @@
 
 import axios from 'axios'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Input from '@/components/Input'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useRouter } from 'next/router'
 
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
@@ -17,6 +18,22 @@ const Auth = () => {
 
     const [variant, setVariant] = useState('login')
     const [error, setError] = useState('')
+
+    const router = useRouter();
+
+    useEffect(() => {
+        // Check if the URL contains an error message
+        const errorParam = router.query.error;
+
+        if (errorParam) {
+            // Handle the error based on the error message
+            if (errorParam === 'OAuthAccountNotLinked') {
+                toast.error('This email has already logged in using a different provider.');
+            } else {
+                toast.error('An error occurred during authentication.');
+            }
+        }
+    }, [router.query.error]);
 
     const toggleVariant = useCallback(() => {
         setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
