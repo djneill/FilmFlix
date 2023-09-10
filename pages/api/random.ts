@@ -1,4 +1,4 @@
-import {NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 import prismadb from '@/lib/prismadb'
 import serverAuth from '@/lib/serverAuth'
 
@@ -19,8 +19,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
 
         return res.status(200).json(randomMovies[0])
-    } catch(error) {
+    } catch (error) {
         console.log(error)
         return res.status(400).end()
     }
-} 
+}
+
+export const min = (list: number[]): number => {
+    return Math.min(...list);
+};
+
+export const max = (list: number[]): number => {
+    return Math.max(...list);
+};
