@@ -27,7 +27,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
                         </p>
                     </div>
                     <div className='flex flex-row mt-4 gap-2 items-center'>
-                        <p className='text-white text-[10px] lg:text-sm'>{data.genre}
+                        <p className='text-white text-[8px] lg:text-sm'>{data.genre}
                         </p>
                     </div>
                 </div>
