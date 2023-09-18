@@ -1,9 +1,10 @@
 import React from 'react'
 import {BsFillPlayFill} from 'react-icons/bs'
 import FavoriteButton from './FavoriteButton'
+import { MovieInterface } from '@/types'
 
 interface MovieCardProps {
-    data: Record<string, any>
+    data: MovieInterface
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
