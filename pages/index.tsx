@@ -1,16 +1,18 @@
 import { Inter } from 'next/font/google'
-import { NextPageContext } from 'next'
-import { getSession } from 'next-auth/react'
-import Navbar from '@/components/Navbar'
-import Billboard from '@/components/Billboard'
-import MovieList from '@/components/MovieList'
-import useMovieList from '@/hooks/useMovieList'
-import useFavorites from '@/hooks/useFavorites'
-import InfoModal from '@/components/InfoModal'
-import useInfoModal from '@/hooks/useInfoModal'
+import React from 'react';
+import { NextPageContext } from 'next';
+import { getSession } from 'next-auth/react';
+
+import Navbar from '@/components/Navbar';
+import Billboard from '@/components/Billboard';
+import MovieList from '@/components/MovieList';
+import InfoModal from '@/components/InfoModal';
+import useMovieList from '@/hooks/useMovieList';
+import useFavorites from '@/hooks/useFavorites';
+import useInfoModalStore from '@/hooks/useInfoModalStore';
 
 export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context)
+  const session = await getSession(context);
 
   if (!session) {
     return {
@@ -26,23 +28,22 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 }
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
-  const { data: movies = [] } = useMovieList()
-  const { data: favorites = [] } = useFavorites()
-  const { isOpen, closeModal } = useInfoModal()
-
+const Home = () => {
+  const { data: movies = [] } = useMovieList();
+  const { data: favorites = [] } = useFavorites();
+  const {isOpen, closeModal} = useInfoModalStore();
 
   return (
     <>
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
-      <div className='pb-40'>
-        <MovieList title='Trending Now' data={movies} />
-        <MovieList title='My List' data={favorites} />
+      <div className="pb-40">
+        <MovieList title="Trending Now" data={movies} />
+        <MovieList title="My List" data={favorites} />
       </div>
     </>
   )
 }
+
+export default Home;
