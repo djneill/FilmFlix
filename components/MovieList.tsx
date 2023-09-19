@@ -26,7 +26,6 @@ const MovieList: React.FC<MovieListProps> = ({data, title}) => {
                     ))}
                 </div>
             </div>
-
         </div>
     )
 }
