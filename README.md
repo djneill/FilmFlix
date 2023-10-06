@@ -27,8 +27,10 @@ Optimized this to fit all screen sizes as best as possible. The goal was for the
 # Things to add
 
 - Create a `.env` file in config folder and add the following as `key = value`
+
 -DATABASE_URL = `your database URI`
 -NEXTAUTH_JWT_SECRET =`NEXT_JWT_SECRET`
+
 -NEXTAUTH_SECRET = `your next-auth secret`
 -NEXTAUTH_URL = `your deployment url or http://localhost:3000`
 
