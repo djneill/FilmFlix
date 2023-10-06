@@ -18,3 +18,32 @@ I wanted to explore and learn more by using React, Typescript, and Next.js to bu
 
 Optimized this to fit all screen sizes as best as possible. The goal was for the user to have a fluid experience on all their devices. Designed with mobile-first in mind.
 
+# Install
+
+`npm install`
+
+---
+
+# Things to add
+
+- Create a `.env` file in config folder and add the following as `key = value`
+    -DATABASE_URL = `your database URI`
+    -NEXTAUTH_JWT_SECRET =`NEXT_JWT_SECRET`
+    -NEXTAUTH_SECRET = `your next-auth secret`
+    -NEXTAUTH_URL = `your deployment url or http://localhost:3000`
+
+    -GITHUB_ID = `your github id`
+    -GITHUB_SECRET = `your github secret`
+
+    -GOOGLE_CLIENT_ID = `your google client id`
+    -GOOGLE_CLIENT_SECRET = `your google client secret`
+
+---
+
+# Run
+
+`npm start`
+
+# Have fun testing and improving it! 😎
+
+# Film Flix
